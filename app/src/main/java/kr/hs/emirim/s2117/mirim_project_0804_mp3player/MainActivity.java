@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     ListView list1;
-    Button btnPlay, btnStop;
+    Button btnPlay, btnStop, btnPause;
     TextView textMusic;
     ProgressBar proBar;
     ArrayList<String> musicList;
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.btn_play);
         btnStop = findViewById(R.id.btn_stop);
         textMusic = findViewById(R.id.text_music);
+        btnPause = findViewById(R.id.btn_pause);
         proBar = findViewById(R.id.pro_bar);
         musicList = new ArrayList<String>();
         File[] files = new File(musicPath).listFiles();
@@ -93,10 +94,24 @@ public class MainActivity extends AppCompatActivity {
                 btnPlay.setClickable(true);
                 btnStop.setClickable(false);
                 textMusic.setText("실행중인 음악: ");
-                proBar.setVisibility(View.INVISIBLE); 
+                proBar.setVisibility(View.INVISIBLE);
             }
         });
         btnStop.setClickable(false);
 
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (btnPause.getText().toString().equals("이어듣기")){
+                    mPlayer.start();
+                    btnPause.setText("일시정지");
+                    textMusic.setText("실행중인 음악: " + selectedMusic);
+                }else{
+                    mPlayer.pause();
+                    btnPause.setText("이어듣기");
+                    textMusic.setText("일시중지된 음악 : " + selectedMusic);
+                }
+            }
+        });
     }
 }

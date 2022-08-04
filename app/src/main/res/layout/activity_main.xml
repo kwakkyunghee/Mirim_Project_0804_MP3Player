@@ -34,7 +34,7 @@
                 android:backgroundTint="#544E63"
                 android:text="듣기" />
             <Button
-                android:id="@+id/btn_"
+                android:id="@+id/btn_pause"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_marginRight="10dp"
